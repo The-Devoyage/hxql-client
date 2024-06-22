@@ -1,4 +1,5 @@
 import * as graphql from "graphql";
+import { fromPath } from "./fromPath";
 
 interface Request {
   query: string | URL;
@@ -13,7 +14,10 @@ interface Options {
 /**
  * hxql - Prepare an element to be hydrated with GraphQL queries
  * @param id - The id of the element to hydrate
- * @param queries - An array of queries to hydrate the element with
+ * @param request - The request object containing the query and variables
+ * @param options - Optional object with the following properties
+ * @param options.process - Whether to process the content after fetching default is true
+ * @param options.trigger - htmx trigger event to use default is "load"
  * @returns void
  * @example
  * ```tsx
@@ -98,4 +102,4 @@ const fetchGraphQL = async (url: URL) => {
   return (await request.text()) as string;
 };
 
-export default hxql;
+export { fromPath, hxql };
